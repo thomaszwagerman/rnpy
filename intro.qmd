@@ -1,9 +1,14 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+Python for the R user
 
-See @knuth84 for additional discussion of literate programming.
+* matplotlib, instead of ggplot2
+* numpy, instead of dplyr
 
-```{r}
-1 + 1
-```
+Using R and Python together
+
+* Language bridges: reticulate / rpy2 
+* Quarto: language agnostic publishing
+* Web Applications: Shiny for R / Shiny for Python
+* In Production: Shell execution
+* In Production: Managing environments

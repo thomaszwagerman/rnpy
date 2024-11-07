@@ -8,29 +8,138 @@
 
 ### How Python package installation works
 
-## 1. With conda
+## With conda
 
+### Setting up an environment from scratch
 
+conda is ...
 
-## 2. Without conda
+To create a project environment which manages both R (r-base) and Python (python):
+
+```sh
+conda create -n env_name r-base python=3.12
+```
+
+This sets up a new environment called `env_name` with both R and Python install.
+
+Notice you can specify which version of R and/or Python to install.
+
+You can then install Packages packages with:
+
+```sh
+conda install numpy
+```
+
+And R packages with the same command. Note that in this case, package names are
+pre-pended with `r-`:
+
+```sh
+conda install r-dplyr
+```
+
+All packages installed and used should now be recorded in the environment, with
+their appropriate version number.
+
+To access and share your environment, run:
+
+```sh
+conda env export > environment.yml
+```
+
+This will create an environment.yml file in your project directory. This will
+allow for this environment to be set up on other systems.
+
+### Installing from an environment.yml
+
+For others (or for yourself on a different system) to set up an identical 
+environment, run:
+
+```sh
+conda -f create env_name environment.yml
+```
+
 
 If you can't (or don't want to) use conda, it is possible to manage the Python
-and R environments seperately.
+and R environments in the same project, but treat their management as seperate
+processes.
 
-In Python you would use `venv`
+## Without conda
+
+### Python without conda
+
+In Python, this is fairly straightforward, and you can use this method
+regardless of the level of permissions you have on your machine. Here, you would
+use `venv`, and `requirements.txt`.
+
+#### Setting up a venv and requirements.txt
+
+```sh
+# To create your venv
+python -m venv env_name
+```
+
+This creates you virtual environment. To use it, and install your package you
+need to "activate" it.
+
+```sh
+# To activate your venv
+source env_name/bin/activate
+```
+
+Now you have activated your environment, you can install a packages using `pip`.
+
+```sh
+pip install pathlib
+```
+
+To keep track of the packages your project depends on, record them in a file
+called `requirements.txt`. It is a very simple file that looks like this:
+
+```txt
+configparser==7.1.0
+pathlib==1.0.1
+xarray==2024.6.0
+```
+
+All it records is `packagename==1.0.0`, very simple!
+
+If you are not sure what packages you have imported.
+
+```sh
+pip freeze
+```
+
+This should print them in the terminal.
+
+#### Installation in a new venv from a requirements.txt
+
+To set up a new environment and install the required packages from a specified
+requirements.txt:
+
+```sh
+# To create your venv
+python -m venv env_name
+source env_name/bin/activate
+
+pip install -r requirements.txt
+```
+
+### R without conda
 
 To manage R dependencies, you have a couple of options, depending on the level
 of permissions you have on the system you are working on.
 
-### With sudo permissions
+#### With sudo permissions
 
 If you have sudo permissions, when can use the `pak` package. The great things 
 about pak is that, unlike `install.packages()` and `renv::install()` (more on
 renv later), it will automatically fetch the pre-built binaries for your 
-operating system, distribution and version. It will also automatically install
-any system-level dependencies that your R package may require. This is
-especially useful on linux systems, where system dependency installation can 
-vastly differ between distributions.
+operating system, distribution and version. More detail on pak, and how it
+operates in [R in Production](https://r-in-production.org/packages.html#pak).
+
+It will also automatically install any system-level dependencies that your R
+package may require. This is especially useful on linux systems, where system
+dependency installation can vastly differ between distributions.
 
 If we have sudo permissions, and are using `pak`, your approach could be as
 simple as providing an `install.R` file which installs the right packages for 
@@ -79,7 +188,7 @@ Call it with:
 R -f install.R
 ```
 
-### Without sudo permission
+#### Without sudo permission
 
 Without sudo permission on your machine, you might have trouble running
 installation commands such as `install.packages()` or `pak::pak()`, as R might
@@ -88,6 +197,12 @@ have 'write' permission.
 
 In this case, the path of least resistance would be to use `renv`. To manage
 your environment. 
+
+If you have not used `renv` before, it is highly recommended you read
+[Getting Started with renv](https://rstudio.github.io/renv/) before reading
+further.
+
+To start using `renv`:
 
 ```r 
 install.packages('renv')
@@ -99,8 +214,8 @@ This will install and set up `renv` for you. `renv::init()` generates a
 `renv.lock` file based on the packages you have installed and used.
 
 An extract from a `renv.lock` is shown below. You will notice it specifies the 
-version of R used, which repositories it has used for installation, and the 
-packages, their version and the download source:
+version of R used, which repositories it has used for installation, as well as
+packages and their associated version and download source.
 
 ```json
 {
@@ -143,7 +258,20 @@ packages, their version and the download source:
 }
 ```
 
-In this case, the `install.R` script would look like this:
+You might have noticed, that the Repositories URL is set to a specific
+destination: `https://packagemanager.posit.co/cran/__linux__/centos7/latest`.
+
+This destination is set to a specific operating system, **centos7**. This URL is 
+obtained from the [Posit Package Manager](https://p3m.dev/client/#/repos/cran/setup).
+
+When using `pak`, this is automatically fetched for us. Unfortunately for us,
+`renv` does not use `pak`. To prevent having to manually change this URL for 
+each deployment on a different system, we need to insert this URL depending 
+on the operating system we are working on.
+
+[Shannon Pileggi](https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/)
+
+With the above in mind, the `install.R` script would look like this:
 
 ```r
 #!/usr/bin/env Rscript
@@ -197,3 +325,10 @@ renv::lockfile_write()
 
 renv::restore()
 ```
+
+In summary, this script should:
+
+  1. Activate `renv` and install `pkgcache`.
+  2. Detect which **os**, **distribution** and **version** R is being run on.
+  3. Concatenate the **package manager URL** and the **os binary URL**.
+  4. Modify the `renv.lock` file to point the repos URL to the correct binary URL.
