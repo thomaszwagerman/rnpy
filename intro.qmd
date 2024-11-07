@@ -1,11 +1,19 @@
 # Introduction
 
-Python for the R user
+
+This book is split in two major sections, **Python for the R user** and
+**Using R and Python together**.
+
+## Python for the R user
+
+Topics:
 
 * matplotlib, instead of ggplot2
 * numpy, instead of dplyr
 
-Using R and Python together
+## Using R and Python together
+
+Topics:
 
 * Language bridges: reticulate / rpy2 
 * Quarto: language agnostic publishing

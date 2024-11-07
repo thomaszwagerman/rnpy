@@ -8,8 +8,16 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - shell_execution.qmd
-    - environments.qmd
+    - part: "Python for the R User" 
+      chapters: 
+        - differences.qmd 
+    - part: "Using R and Python Together"
+      chapters:
+        - bridges.qmd
+        - language_agnostic_publishing.qmd
+        - webapps_shiny.qmd
+        - shell_execution.qmd
+        - environments.qmd
     - summary.qmd
     - references.qmd
 
