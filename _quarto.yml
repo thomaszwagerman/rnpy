@@ -18,7 +18,6 @@ book:
         - webapps_shiny.qmd
         - shell_execution.qmd
         - environments.qmd
-    - summary.qmd
 
 format:
   html:
