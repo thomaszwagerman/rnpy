@@ -1,10 +1,47 @@
 # Introduction
 
+## Language Agnostic Data Science
 
-This book is split in two major sections, **Python for the R user** and
+The trend of the past few years is that Data Science is becoming more
+language-agnostic. 
+
+Tools such as [Quarto](https://quarto.org/),
+[Apache Arrow](https://arrow.apache.org/)... enable working across languages
+with less friction.
+
+RStudio (the company) renaming itself to "Posit" was also a clear statement of
+intent. Tools like [Shiny](https://shiny.posit.co/py/) and
+[Pins](https://rstudio.github.io/pins-python/) are being ported to Python, and
+the latest exciting installment is Posit's new IDE,
+[Positron](https://github.com/posit-dev/positron).
+
+We often receive questions from R users on whether we can deliver an
+"Introduction to Python" course, or something similar. While yes, we can
+certainly do that, the question really is... _but why?_
+
+> _"We would like Wi-fi... What's Wi-fi?_"
+
+Another aspect to this we have noticed, is that a lot of "Introduction to
+Python" courses are almost always aimed at complete beginners of programming
+_full stop_. Most, if not all R users know full-well what a variable or a 
+dataframe is and how to `print("Hello World!")`. These courses are not pitched
+at the right level.
+
+Returning to the question of why R users might want to learn Python, the answer
+is that there could be a plethora of reasons. But sometimes, simply being able
+to use R in combination with Python could be enough to achieve your aims.
+
+This book aims to provide some guidance on where R and Python are different,
+but also show the ever-increasing range of methods to combine the two languages
+together.
+
+Therefore this book is split in two major sections, **Python for the R user** and
 **Using R and Python together**.
 
 ## Python for the R user
+
+This chapter attempts to minimally break down the differences between R and
+Python, written for the R user.
 
 Topics:
 
@@ -12,6 +49,10 @@ Topics:
 * numpy, instead of dplyr
 
 ## Using R and Python together
+
+This chapter outlines the range of tools available to implement R and Python
+togther, and allow you to collaborate with Python users, without actually
+learning much Python.
 
 Topics:
 

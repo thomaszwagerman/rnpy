@@ -48,7 +48,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "Python for the R user\n\nmatplotlib, instead of ggplot2\nnumpy, instead of dplyr\n\nUsing R and Python together\n\nLanguage bridges: reticulate / rpy2\nQuarto: language agnostic publishing\nWeb Applications: Shiny for R / Shiny for Python\nIn Production: Shell execution\nIn Production: Managing environments",
+    "text": "1.1 Language Agnostic Data Science\nThe trend of the past few years is that Data Science is becoming more language-agnostic.\nTools such as Quarto, Apache Arrow… enable working across languages with less friction.\nRStudio (the company) renaming itself to “Posit” was also a clear statement of intent. Tools like Shiny and Pins are being ported to Python, and the latest exciting installment is Posit’s new IDE, Positron.\nWe often receive questions from R users on whether we can deliver an “Introduction to Python” course, or something similar. While yes, we can certainly do that, the question really is… but why?\nAnother aspect to this we have noticed, is that a lot of “Introduction to Python” courses are almost always aimed at complete beginners of programming full stop. Most, if not all R users know full-well what a variable or a dataframe is and how to print(\"Hello World!\"). These courses are not pitched at the right level.\nReturning to the question of why R users might want to learn Python, the answer is that there could be a plethora of reasons. But sometimes, simply being able to use R in combination with Python could be enough to achieve your aims.\nThis book aims to provide some guidance on where R and Python are different, but also show the ever-increasing range of methods to combine the two languages together.\nTherefore this book is split in two major sections, Python for the R user and Using R and Python together.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -81,6 +81,36 @@
     "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
       "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html#language-agnostic-data-science",
+    "href": "intro.html#language-agnostic-data-science",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "“We would like Wi-fi… What’s Wi-fi?”",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#python-for-the-r-user",
+    "href": "intro.html#python-for-the-r-user",
+    "title": "1  Introduction",
+    "section": "1.2 Python for the R user",
+    "text": "1.2 Python for the R user\nTopics:\n\nmatplotlib, instead of ggplot2\nnumpy, instead of dplyr",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#using-r-and-python-together",
+    "href": "intro.html#using-r-and-python-together",
+    "title": "1  Introduction",
+    "section": "1.3 Using R and Python together",
+    "text": "1.3 Using R and Python together\nTopics:\n\nLanguage bridges: reticulate / rpy2\nQuarto: language agnostic publishing\nWeb Applications: Shiny for R / Shiny for Python\nIn Production: Shell execution\nIn Production: Managing environments",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   }
 ]

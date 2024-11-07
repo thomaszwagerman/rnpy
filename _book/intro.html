@@ -193,8 +193,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#language-agnostic-data-science" id="toc-language-agnostic-data-science" class="nav-link active" data-scroll-target="#language-agnostic-data-science"><span class="header-section-number">1.1</span> Language Agnostic Data Science</a></li>
+  <li><a href="#python-for-the-r-user" id="toc-python-for-the-r-user" class="nav-link" data-scroll-target="#python-for-the-r-user"><span class="header-section-number">1.2</span> Python for the R user</a></li>
+  <li><a href="#using-r-and-python-together" id="toc-using-r-and-python-together" class="nav-link" data-scroll-target="#using-r-and-python-together"><span class="header-section-number">1.3</span> Using R and Python together</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -218,12 +226,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Python for the R user</p>
+<section id="language-agnostic-data-science" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="language-agnostic-data-science"><span class="header-section-number">1.1</span> Language Agnostic Data Science</h2>
+<p>The trend of the past few years is that Data Science is becoming more language-agnostic.</p>
+<p>Tools such as <a href="https://quarto.org/">Quarto</a>, <a href="https://arrow.apache.org/">Apache Arrow</a>… enable working across languages with less friction.</p>
+<p>RStudio (the company) renaming itself to “Posit” was also a clear statement of intent. Tools like <a href="https://shiny.posit.co/py/">Shiny</a> and <a href="https://rstudio.github.io/pins-python/">Pins</a> are being ported to Python, and the latest exciting installment is Posit’s new IDE, <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
+<p>We often receive questions from R users on whether we can deliver an “Introduction to Python” course, or something similar. While yes, we can certainly do that, the question really is… <em>but why?</em></p>
+<blockquote class="blockquote">
+<p><em>“We would like Wi-fi… What’s Wi-fi?</em>”</p>
+</blockquote>
+<p>Another aspect to this we have noticed, is that a lot of “Introduction to Python” courses are almost always aimed at complete beginners of programming <em>full stop</em>. Most, if not all R users know full-well what a variable or a dataframe is and how to <code>print("Hello World!")</code>. These courses are not pitched at the right level.</p>
+<p>Returning to the question of why R users might want to learn Python, the answer is that there could be a plethora of reasons. But sometimes, simply being able to use R in combination with Python could be enough to achieve your aims.</p>
+<p>This book aims to provide some guidance on where R and Python are different, but also show the ever-increasing range of methods to combine the two languages together.</p>
+<p>Therefore this book is split in two major sections, <strong>Python for the R user</strong> and <strong>Using R and Python together</strong>.</p>
+</section>
+<section id="python-for-the-r-user" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="python-for-the-r-user"><span class="header-section-number">1.2</span> Python for the R user</h2>
+<p>Topics:</p>
 <ul>
 <li>matplotlib, instead of ggplot2</li>
 <li>numpy, instead of dplyr</li>
 </ul>
-<p>Using R and Python together</p>
+</section>
+<section id="using-r-and-python-together" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="using-r-and-python-together"><span class="header-section-number">1.3</span> Using R and Python together</h2>
+<p>Topics:</p>
 <ul>
 <li>Language bridges: reticulate / rpy2</li>
 <li>Quarto: language agnostic publishing</li>
@@ -233,6 +260,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
