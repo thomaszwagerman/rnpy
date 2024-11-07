@@ -12,7 +12,7 @@ R.
 
 ### How R package installation works
 
-Well, _remind ourselves...._ Package installation in R is likely something you have 
+Well, _remind ourselves...._ Python installation in R is likely something you have 
 not really thought about, beyond writing `install.packages()`. 
 
 This is one of the huge benefits that makes R easy to pick up for
@@ -21,6 +21,8 @@ This is one of the huge benefits that makes R easy to pick up for
 #### Building from binaries vs. building from source
 
 ### How Python package installation works
+
+pip, conda, miniconda, mambo PyPi... where do I start?
 
 ## With conda
 
@@ -44,12 +46,39 @@ You can then install Packages packages with:
 conda install numpy
 ```
 
-And R packages with the same command. Note that in this case, package names are
-pre-pended with `r-`:
+For Python packages on Github:
+
+```sh
+conda install git pip
+
+# Now use pip install with git+<repo-url>
+pip install git+https://github.com/davidwilby/amundsen-sea-low-index
+
+# If you need a specific optional dependency:
+pip install asli[s3]@git+https://github.com/davidwilby/amundsen-sea-low-index
+```
+
+R packages are installed with the same `conda install` command. Note that in
+this case, package names are pre-pended with `r-`:
 
 ```sh
 conda install r-dplyr
 ```
+
+For R packages on Github:
+
+```sh
+conda install conda build
+
+conda skeleton cran <github-url>
+
+# Replace with your version of R
+conda build --R=4.2.2 r-<lowercase-packagename>
+```
+
+This creates a "conda skeleton" of the R package hosted on Github.
+
+**note, explain what a conda skeleton is?**
 
 All packages installed and used should now be recorded in the environment, with
 their appropriate version number.
@@ -145,8 +174,8 @@ of permissions you have on the system you are working on.
 
 #### With sudo permissions
 
-If you have sudo permissions, when can use the `pak` package. The great things 
-about pak is that, unlike `install.packages()` and `renv::install()` (more on
+If you have sudo permissions, we can use the `pak` package. The great things 
+about `pak` is that, unlike `install.packages()` and `renv::install()` (more on
 renv later), it will automatically fetch the pre-built binaries for your 
 operating system, distribution and version. More detail on pak, and how it
 operates in [R in Production](https://r-in-production.org/packages.html#pak).
