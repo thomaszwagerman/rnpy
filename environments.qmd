@@ -1,0 +1,199 @@
+# Environments
+
+## Context
+
+### How R package installation works
+
+#### Building from binaries vs. building from source
+
+### How Python package installation works
+
+## 1. With conda
+
+
+
+## 2. Without conda
+
+If you can't (or don't want to) use conda, it is possible to manage the Python
+and R environments seperately.
+
+In Python you would use `venv`
+
+To manage R dependencies, you have a couple of options, depending on the level
+of permissions you have on the system you are working on.
+
+### With sudo permissions
+
+If you have sudo permissions, when can use the `pak` package. The great things 
+about pak is that, unlike `install.packages()` and `renv::install()` (more on
+renv later), it will automatically fetch the pre-built binaries for your 
+operating system, distribution and version. It will also automatically install
+any system-level dependencies that your R package may require. This is
+especially useful on linux systems, where system dependency installation can 
+vastly differ between distributions.
+
+If we have sudo permissions, and are using `pak`, your approach could be as
+simple as providing an `install.R` file which installs the right packages for 
+you.
+
+First install `pak`:
+
+```sh
+Rscript -e install.packages('pak')
+```
+
+Now it can be called in your set up script. You would normally only run this 
+once on deployment.
+
+```r
+#!/usr/bin/env Rscript
+# Usage R -f install.R
+
+# Selecting p3m.dev is an optional step for linux distros
+# It will speed up installation and prevents the risk of installation 
+# failing on external C libraries
+
+# This is because CRAN only provides source packages for linux
+# and not binary
+# see: https://r-in-production.org/packages.html#installing-a-package-on-linux
+
+# For Ubuntu 24.04
+options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/noble/latest"))
+
+# For Rocky 9
+# options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/rhel9/latest"))
+
+pak::pak("readr")
+pak::pak("paws")
+pak::pak("ini")
+pak::pak("assertr")
+pak::pak("dplyr")
+
+# A package on Github:
+pak::pak("thomaszwagerman/butterfly")
+```
+
+Call it with:
+
+```sh
+R -f install.R
+```
+
+### Without sudo permission
+
+Without sudo permission on your machine, you might have trouble running
+installation commands such as `install.packages()` or `pak::pak()`, as R might
+be trying to install your packages into a shared library, where you do not 
+have 'write' permission.
+
+In this case, the path of least resistance would be to use `renv`. To manage
+your environment. 
+
+```r 
+install.packages('renv')
+
+renv::init()
+```
+
+This will install and set up `renv` for you. `renv::init()` generates a
+`renv.lock` file based on the packages you have installed and used.
+
+An extract from a `renv.lock` is shown below. You will notice it specifies the 
+version of R used, which repositories it has used for installation, and the 
+packages, their version and the download source:
+
+```json
+{
+  "R": {
+    "Version": "4.4.1",
+    "Repositories": [
+      {
+        "Name": "P3M",
+        "URL": "https://packagemanager.posit.co/cran/__linux__/centos7/latest"
+      }
+    ]
+  },
+  "Packages": {
+    "MASS": {
+      "Package": "MASS",
+      "Version": "7.3-59",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "0cafd6f0500e5deba33be22c46bf6055"
+    },
+    "R6": {
+      "Package": "R6",
+      "Version": "2.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "470851b6d5d0ac559e9d01bb352b4021"
+    }
+  }
+}
+```
+
+In this case, the `install.R` script would look like this:
+
+```r
+#!/usr/bin/env Rscript
+# Usage R -f hpc_setup.R
+#
+# This will not work with opensuse and sle,
+# naming inconsistencies across distros is hard
+
+# This is not an R project, so need to manually "activate" renv
+source("renv/activate.R")
+
+install.packages("pkgcache")
+
+# Moving on to installing r and system dependencies with renv.lock
+# Have R obtain the current platform distro and release
+os <- data.frame(
+  distribution = pkgcache::current_r_platform_data()$distribution,
+  release = pkgcache::current_r_platform_data()$release
+)
+
+os$release <- round(as.numeric((os$release)))
+
+# Some wrangling to make matching more reliable across distros
+ppm_platforms <- pkgcache::ppm_platforms()
+
+# Take the word "linux" out of distribution names
+ppm_platforms$distribution <- gsub("linux", "", ppm_platforms$distribution)
+# Makes matching rocky distro possible 
+ppm_platforms$release <- round(as.numeric((ppm_platforms$release)))
+
+# Match with pak's ppm_platforms
+os_table <- merge(
+  os,
+  ppm_platforms
+)
+
+if (os_table$os == "linux") {
+  p3m_url <- paste0(
+    "https://p3m.dev/cran/__linux__/",
+  os_table$binary_url,
+"/latest"
+)
+} else {
+  p3m_url <- "https://p3m.dev/cran/latest"
+}
+
+renv::lockfile_modify(repos = c(
+  P3M = p3m_url
+)) |> 
+renv::lockfile_write()
+
+renv::restore()
+```
