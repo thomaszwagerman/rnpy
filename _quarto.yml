@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "rnpy"
+  title: "Combining R and Python for Scientific Computing"
   author: "Thomas Zwagerman"
   date: "07/11/2024"
   chapters:
@@ -19,15 +19,15 @@ book:
         - shell_execution.qmd
         - environments.qmd
     - summary.qmd
-    - references.qmd
-
-bibliography: references.bib
 
 format:
   html:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+
+execute:
+  freeze: auto
 
 editor: visual
 

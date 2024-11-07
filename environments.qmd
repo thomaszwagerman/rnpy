@@ -1,8 +1,22 @@
-# Environments
+# Managing Environments
 
 ## Context
 
+This is a big one for the R user. When you are unfamiliar with how Python
+virtual environments work, it is probably one of the most frustrating concepts
+to pick up from scratch.
+
+But fear not - to fully get to grips with how Python virtual environments work
+and package installation works, it is good to remind ourselves how this works in
+R.
+
 ### How R package installation works
+
+Well, _remind ourselves...._ Package installation in R is likely something you have 
+not really thought about, beyond writing `install.packages()`. 
+
+This is one of the huge benefits that makes R easy to pick up for
+"non-programmers", a lot of this stuff is handled for you. 
 
 #### Building from binaries vs. building from source
 
@@ -258,8 +272,8 @@ packages and their associated version and download source.
 }
 ```
 
-You might have noticed, that the Repositories URL is set to a specific
-destination: `https://packagemanager.posit.co/cran/__linux__/centos7/latest`.
+<!-- You might have noticed, that the Repositories URL is set to a specific -->
+<!-- destination: `https://packagemanager.posit.co/cran/__linux__/centos7/latest`. -->
 
 This destination is set to a specific operating system, **centos7**. This URL is 
 obtained from the [Posit Package Manager](https://p3m.dev/client/#/repos/cran/setup).

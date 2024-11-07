@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Environments – rnpy</title>
+<title>7&nbsp; Managing Environments – Combining R and Python for Scientific Computing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bridges.html">Using R and Python Together</a></li><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Environments</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bridges.html">Using R and Python Together</a></li><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Managing Environments</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">rnpy</a> 
+      <a href="./">Combining R and Python for Scientific Computing</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./environments.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Managing Environments</span></span></a>
   </div>
 </li>
       </ul>
@@ -214,12 +214,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -253,9 +247,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bridges.html">Using R and Python Together</a></li><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Environments</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bridges.html">Using R and Python Together</a></li><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Managing Environments</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Environments</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Managing Environments</span></h1>
 </div>
 
 
@@ -274,8 +268,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="context" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="context"><span class="header-section-number">7.1</span> Context</h2>
+<p>This is a big one for the R user. When you are unfamiliar with how Python virtual environments work, it is probably one of the most frustrating concepts to pick up from scratch.</p>
+<p>But fear not - to fully get to grips with how Python virtual environments work and package installation works, it is good to remind ourselves how this works in R.</p>
 <section id="how-r-package-installation-works" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="how-r-package-installation-works"><span class="header-section-number">7.1.1</span> How R package installation works</h3>
+<p>Well, <em>remind ourselves….</em> Package installation in R is likely something you have not really thought about, beyond writing <code>install.packages()</code>.</p>
+<p>This is one of the huge benefits that makes R easy to pick up for “non-programmers”, a lot of this stuff is handled for you.</p>
 <section id="building-from-binaries-vs.-building-from-source" class="level4" data-number="7.1.1.1">
 <h4 data-number="7.1.1.1" class="anchored" data-anchor-id="building-from-binaries-vs.-building-from-source"><span class="header-section-number">7.1.1.1</span> Building from binaries vs.&nbsp;building from source</h4>
 </section>
@@ -430,7 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
 <span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You might have noticed, that the Repositories URL is set to a specific destination: <code>https://packagemanager.posit.co/cran/__linux__/centos7/latest</code>.</p>
+<!-- You might have noticed, that the Repositories URL is set to a specific -->
+<!-- destination: `https://packagemanager.posit.co/cran/__linux__/centos7/latest`. -->
 <p>This destination is set to a specific operating system, <strong>centos7</strong>. This URL is obtained from the <a href="https://p3m.dev/client/#/repos/cran/setup">Posit Package Manager</a>.</p>
 <p>When using <code>pak</code>, this is automatically fetched for us. Unfortunately for us, <code>renv</code> does not use <code>pak</code>. To prevent having to manually change this URL for each deployment on a different system, we need to insert this URL depending on the operating system we are working on.</p>
 <p><a href="https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/">Shannon Pileggi</a></p>
