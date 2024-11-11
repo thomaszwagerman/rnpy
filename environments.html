@@ -298,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>R packages are installed with the same <code>conda install</code> command. Note that in this case, package names are pre-pended with <code>r-</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install r-dplyr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For R packages on Github:</p>
+<p>Taken from <a href="https://stackoverflow.com/questions/52061664/install-r-package-from-github-using-conda">this issue</a>, but does not work for me</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install conda build</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> skeleton cran <span class="op">&lt;</span>github-url<span class="op">&gt;</span></span>
@@ -306,6 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> build <span class="at">--R</span><span class="op">=</span>4.2.2 r-<span class="op">&lt;</span>lowercase-packagename<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates a “conda skeleton” of the R package hosted on Github.</p>
 <p><strong>note, explain what a conda skeleton is?</strong></p>
+<p><strong>Alternative approach, specify R version in conda but use <code>renv::restore()</code> for non-CRAN packages</strong></p>
 <p>All packages installed and used should now be recorded in the environment, with their appropriate version number.</p>
 <p>To access and share your environment, run:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="op">&gt;</span> environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
