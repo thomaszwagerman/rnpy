@@ -67,6 +67,9 @@ conda install r-dplyr
 
 For R packages on Github:
 
+Taken from [this issue](https://stackoverflow.com/questions/52061664/install-r-package-from-github-using-conda),
+but does not work for me
+
 ```sh
 conda install conda build
 
@@ -79,6 +82,8 @@ conda build --R=4.2.2 r-<lowercase-packagename>
 This creates a "conda skeleton" of the R package hosted on Github.
 
 **note, explain what a conda skeleton is?**
+
+**Alternative approach, specify R version in conda but use `renv::restore()` for non-CRAN packages**
 
 All packages installed and used should now be recorded in the environment, with
 their appropriate version number.
@@ -100,7 +105,6 @@ environment, run:
 ```sh
 conda -f create env_name environment.yml
 ```
-
 
 If you can't (or don't want to) use conda, it is possible to manage the Python
 and R environments in the same project, but treat their management as seperate

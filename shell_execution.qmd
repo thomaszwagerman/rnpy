@@ -1,1 +1,38 @@
 # Using R and Python in the shell
+
+## R
+
+Running R in the shell bring slightly different concerns from running R
+interactively - which is likely what most R users are used to.
+
+There are a few extra quirks and considerations to running R in the shell, some
+of which are listed below.
+
+### Executing scripts
+
+If you are intending to run an R script in the shell, the following line of text
+should be at the top of your script:
+
+```sh
+#!/usr/bin/env Rscript
+```
+
+### Rscript vs R -f
+
+What is the difference?
+
+### Logging methods
+
+Base R's `sink()` function
+
+The `logging` and `logger` packages.
+
+### A note on developing R packages 
+
+When writing functions as part of an R package, it could be useful to keep in 
+mind that some users might not be using your package interactively, but through 
+the shell.
+
+There is no difference in functionality here, but feedback your package provides,
+say through `print()` (discouraged), `message()`/`warning()`/`stop()`, or
+`cli::cat_*()` functions, behave slightly differently.
