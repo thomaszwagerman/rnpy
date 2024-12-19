@@ -285,7 +285,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> (robjects.default_converter <span class="op">+</span> pandas2ri.converter).context():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> robjects.conversion.get_conversion().rpy2py(r_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here, <code>df</code> is now a pandas dataframe that can be used natively in Python.</p>
-<p><strong>Some considerations</strong>: 1. This is great method to quickly incorporate some R code into a Python script. 1. You will need to manage dependencies across both R and Python, see <span class="citation" data-cites="environments.qmd">@environments.qmd</span>. 1. Performance - the conversion step can be computationally expensive in some cases. This is especially important to consider when using this method in a Shiny for Python application. If your app relies on snappy performance, use this method as a prototype, and subsequently consider whether the effort of porting your R scripts to a Python-based method is worth the performance improvement. If sticking with this method, try to minimise the number of conversions back and forth.</p>
+<p><strong>Some considerations</strong>:</p>
+<ol type="1">
+<li>This is great method to quickly incorporate some R code into a Python script.</li>
+<li>You will need to manage dependencies across both R and Python, see <a href="environments.html" class="quarto-xref"><span>Chapter 7</span></a>.</li>
+<li>Performance - the conversion step can be computationally expensive in some cases. This is especially important to consider when using this method in a Shiny for Python application. If your app relies on snappy performance, use this method as a prototype, and subsequently consider whether the effort of porting your R scripts to a Python-based method is worth the performance improvement. If sticking with this method, try to minimise the number of conversions back and forth.</li>
+</ol>
 </section>
 <section id="using-python-in-r-reticulate" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="using-python-in-r-reticulate"><span class="header-section-number">3.2</span> Using Python in R: reticulate</h2>
